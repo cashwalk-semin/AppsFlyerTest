@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">AppsflyerTest</string>
     <string name="in_app_event">In-app Event</string>
+    <string name="purchase_event">Purchase Event</string>
+    <string name="lockscreen_event">Lockscreen Event</string>
     <string name="ad_revenue">Ad Revenue</string>
 </resources>

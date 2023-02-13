@@ -27,13 +27,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         binding.run {
-            btnInApp.setOnClickListener {
-                val map = HashMap<String, Any>()
-                map[AFInAppEventParameterName.LEVEL] = 3
-                map[AFInAppEventParameterName.CONTENT] = "semin"
+            btnPurchase.setOnClickListener {
+                purchaseEvent("amazon", 2000)
+                showToast("btnPurchase")
+            }
 
-                appsFlyerInAppEvent("custom_event_2", map)
-                showToast("btnInApp")
+            btnLockscreen.setOnClickListener {
+                lockScreenEvent()
+                showToast("btnLockscreen")
             }
 
             btnAdRevenue.setOnClickListener {
@@ -46,13 +47,29 @@ class MainActivity : AppCompatActivity() {
             }
 
             btnElse.setOnClickListener {
-                showToast("btnElse")
+                val map = HashMap<String, Any>()
+                map[AFInAppEventParameterName.LEVEL] = 3
+                map[AFInAppEventParameterName.CONTENT] = "semin"
+
+                appsFlyerInAppEvent("custom_event_2", map)
+                showToast("btnInApp")
             }
         }
     }
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun purchaseEvent(giftCard: String, coin: Int) {
+        val map = HashMap<String, Any>()
+        map[AFInAppEventParameterName.CONTENT] = giftCard
+        map[AFInAppEventParameterName.PRICE] = coin
+        appsFlyerInAppEvent(AFInAppEventType.PURCHASE, map)
+    }
+
+    private fun lockScreenEvent() {
+        appsFlyerInAppEvent("lockscreen_coin_event", emptyMap())
     }
 
     private fun appsFlyerInAppEvent(eventName: String, eventValue: Map<String, Any>) {

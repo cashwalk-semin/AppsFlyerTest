@@ -33,10 +33,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/btn_in_app"
-            android:layout_width="160dp"
+            android:id="@+id/btn_purchase"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/in_app_event"
+            android:text="@string/purchase_event"
             android:textColor="@color/black"
             android:backgroundTint="@color/color_primary"
             app:backgroundTint="@null"
@@ -44,11 +44,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/app_bar"
+            app:layout_constraintBottom_toTopOf="@id/btn_lockscreen" />
+
+        <Button
+            android:id="@+id/btn_lockscreen"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/lockscreen_event"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/color_primary"
+            app:backgroundTint="@null"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_purchase"
             app:layout_constraintBottom_toTopOf="@id/btn_ad_revenue" />
 
         <Button
             android:id="@+id/btn_ad_revenue"
-            android:layout_width="160dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="@string/ad_revenue"
             android:textColor="@color/black"
@@ -56,12 +70,12 @@
             app:backgroundTint="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_in_app"
+            app:layout_constraintTop_toBottomOf="@id/btn_lockscreen"
             app:layout_constraintBottom_toTopOf="@id/btn_else" />
 
         <Button
             android:id="@+id/btn_else"
-            android:layout_width="160dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/color_primary"
             android:textColor="@color/black"
