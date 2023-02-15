@@ -6,14 +6,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.appsflyer.AFInAppEventParameterName
 import com.appsflyer.AFInAppEventType
-import com.appsflyer.AppsFlyerLib
-import com.appsflyer.adrevenue.AppsFlyerAdRevenue
+import com.appsflyer.adrevenue.adnetworks.AppsFlyerAdNetworkEventType
 import com.appsflyer.adrevenue.adnetworks.generic.MediationNetwork
 import com.appsflyer.adrevenue.adnetworks.generic.Scheme
-import com.appsflyer.attribution.AppsFlyerRequestListener
 import com.cashwalklabs.appsflyertest.databinding.ActivityMainBinding
 import java.util.*
-import kotlin.collections.HashMap
 
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
@@ -38,20 +35,17 @@ class MainActivity : AppCompatActivity() {
             }
 
             btnAdRevenue.setOnClickListener {
-                val map = HashMap<String, String>()
-                map[Scheme.COUNTRY] = "US"
-                map[Scheme.PLACEMENT] = "test"
+                val param = AppsFlyerManager.getAdParam("event_name" to "event_name", Scheme.AD_TYPE to AppsFlyerAdNetworkEventType.BANNER.toString(), Scheme.AD_UNIT to "lucky_box", Scheme.COUNTRY to "US")
 
-                appsFlyerAdRevenue("test", MediationNetwork.customMediation, Currency.getInstance(Locale.US), 0.01, map)
+                AppsFlyerManager.logAdRevenue("test", MediationNetwork.customMediation, Currency.getInstance(Locale.US), 0.01, param)
+                AppsFlyerManager.logAdRevenue("APS", MediationNetwork.ironsource, Currency.getInstance(Locale.US), 0.02, param)
                 showToast("btnAdRevenue")
             }
 
             btnElse.setOnClickListener {
-                val map = HashMap<String, Any>()
-                map[AFInAppEventParameterName.LEVEL] = 3
-                map[AFInAppEventParameterName.CONTENT] = "semin"
+                val param = AppsFlyerManager.getInAppParam(AFInAppEventParameterName.LEVEL to 3, AFInAppEventParameterName.CONTENT to "semin")
 
-                appsFlyerInAppEvent("custom_event_2", map)
+                AppsFlyerManager.logEvent("custom_event_2", param)
                 showToast("btnInApp")
             }
         }
@@ -62,29 +56,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun purchaseEvent(giftCard: String, coin: Int) {
-        val map = HashMap<String, Any>()
-        map[AFInAppEventParameterName.CONTENT] = giftCard
-        map[AFInAppEventParameterName.PRICE] = coin
-        appsFlyerInAppEvent(AFInAppEventType.PURCHASE, map)
+        val param = AppsFlyerManager.getInAppParam(AFInAppEventParameterName.CONTENT to giftCard, AFInAppEventParameterName.PRICE to coin)
+        AppsFlyerManager.logEvent(AFInAppEventType.PURCHASE, param)
     }
 
     private fun lockScreenEvent() {
-        appsFlyerInAppEvent("lockscreen_coin_event", emptyMap())
-    }
-
-    private fun appsFlyerInAppEvent(eventName: String, eventValue: Map<String, Any>) {
-        AppsFlyerLib.getInstance().logEvent(this, eventName, eventValue, object: AppsFlyerRequestListener{
-            override fun onSuccess() {
-                TestLog.messageLog("logEvent: onSuccess")
-            }
-
-            override fun onError(p0: Int, p1: String) {
-                TestLog.messageLog("logEvent: onError: $p0 $p1")
-            }
-        })
-    }
-
-    private fun appsFlyerAdRevenue(monetizationNetwork: String, mediationNetwork: MediationNetwork, eventRevenueCurrency: Currency, eventRevenue: Double, nonMandatory: Map<String, String>) {
-        AppsFlyerAdRevenue.logAdRevenue(monetizationNetwork, mediationNetwork, eventRevenueCurrency, eventRevenue, nonMandatory)
+        AppsFlyerManager.logEvent("lockscreen_coin_event")
     }
 }

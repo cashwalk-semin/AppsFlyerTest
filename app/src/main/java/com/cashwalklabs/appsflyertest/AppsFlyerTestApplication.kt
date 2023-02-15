@@ -7,8 +7,13 @@ import com.appsflyer.attribution.AppsFlyerRequestListener
 
 class AppsFlyerTestApplication: Application() {
 
+    companion object{
+        var app: AppsFlyerTestApplication? = null
+    }
+
     override fun onCreate() {
         super.onCreate()
+        app = this
         initAppsFlyer()
     }
 
@@ -27,6 +32,7 @@ class AppsFlyerTestApplication: Application() {
         AppsFlyerLib.getInstance().setDebugLog(true)
 
         val afRevenueBuilder = AppsFlyerAdRevenue.Builder(this).adEventListener { event ->
+            //todo remove listener
             TestLog.messageLog("adRevenue:adNetworkActionName ${event.adNetworkActionName}")
             TestLog.messageLog("adRevenue:adNetworkEventType ${event.adNetworkEventType}")
             TestLog.messageLog("adRevenue:adNetworkPayload ${event.adNetworkPayload}")
