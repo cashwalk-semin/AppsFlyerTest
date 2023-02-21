@@ -43,9 +43,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             btnElse.setOnClickListener {
-                val param = AppsFlyerManager.getInAppParam(AFInAppEventParameterName.LEVEL to 3, AFInAppEventParameterName.CONTENT to "semin")
-
-                AppsFlyerManager.logEvent("custom_event_2", param)
+                wishListEvent()
                 showToast("btnInApp")
             }
         }
@@ -62,5 +60,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun lockScreenEvent() {
         AppsFlyerManager.logEvent("lockscreen_coin_event")
+    }
+
+    private fun wishListEvent() {
+        val param = AppsFlyerManager.getInAppParam(AFInAppEventParameterName.PRICE to 1234 , AFInAppEventParameterName.CONTENT_ID to "euijin")
+        AppsFlyerManager.logEvent(AFInAppEventType.ADD_TO_WISH_LIST, param)
     }
 }
