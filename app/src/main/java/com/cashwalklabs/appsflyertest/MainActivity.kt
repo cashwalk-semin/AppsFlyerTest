@@ -35,11 +35,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             btnAdRevenue.setOnClickListener {
-                val param = AppsFlyerManager.getAdParam("event_name" to "event_name", Scheme.AD_TYPE to AppsFlyerAdNetworkEventType.BANNER.toString(), Scheme.AD_UNIT to "lucky_box", Scheme.COUNTRY to "US")
-
-                AppsFlyerManager.logAdRevenue("test", MediationNetwork.customMediation, Currency.getInstance(Locale.US), 0.01, param)
-                AppsFlyerManager.logAdRevenue("APS", MediationNetwork.ironsource, Currency.getInstance(Locale.US), 0.02, param)
-                showToast("btnAdRevenue")
             }
 
             btnElse.setOnClickListener {

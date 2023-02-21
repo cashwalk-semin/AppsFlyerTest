@@ -24,18 +24,6 @@ object AppsFlyerManager {
     }
 
     /***
-     * AdRevenue param 생성
-     * vararg Pair -> Map 변환
-     */
-    fun getAdParam(vararg pairs: Pair<String, String>): Map<String, String> {
-        val map = HashMap<String, String>()
-        pairs.map {
-            map.put(it.first, it.second)
-        }
-        return map
-    }
-
-    /***
      * In-App Event Tracking
      */
     fun logEvent(eventName: String, eventValue: Map<String, Any> = emptyMap()) {
@@ -51,12 +39,5 @@ object AppsFlyerManager {
                 }
             })
         }
-    }
-
-    /***
-     * AdRevenue Tracking
-     */
-    fun logAdRevenue(monetizationNetwork: String, mediationNetwork: MediationNetwork, eventRevenueCurrency: Currency, eventRevenue: Double, nonMandatory: Map<String, String>? = null) {
-        AppsFlyerAdRevenue.logAdRevenue(monetizationNetwork, mediationNetwork, eventRevenueCurrency, eventRevenue, nonMandatory)
     }
 }

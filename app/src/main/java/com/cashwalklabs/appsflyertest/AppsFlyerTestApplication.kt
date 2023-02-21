@@ -19,8 +19,5 @@ class AppsFlyerTestApplication: Application() {
     private fun initAppsFlyer() {
         AppsFlyerLib.getInstance().init(BuildConfig.APPSFLYER_DEV_KEY, null, this)
         AppsFlyerLib.getInstance().start(this, BuildConfig.APPSFLYER_DEV_KEY, null)
-
-        val afRevenueBuilder = AppsFlyerAdRevenue.Builder(this)
-        AppsFlyerAdRevenue.initialize(afRevenueBuilder.build())
     }
 }
