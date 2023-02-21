@@ -2,7 +2,6 @@ package com.cashwalklabs.appsflyertest
 
 import android.app.Application
 import com.appsflyer.AppsFlyerLib
-import com.appsflyer.adrevenue.AppsFlyerAdRevenue
 
 class AppsFlyerTestApplication: Application() {
 

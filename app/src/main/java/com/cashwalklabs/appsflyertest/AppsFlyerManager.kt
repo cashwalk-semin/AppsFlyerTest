@@ -1,8 +1,6 @@
 package com.cashwalklabs.appsflyertest
 
 import com.appsflyer.AppsFlyerLib
-import com.appsflyer.adrevenue.AppsFlyerAdRevenue
-import com.appsflyer.adrevenue.adnetworks.generic.MediationNetwork
 import com.appsflyer.attribution.AppsFlyerRequestListener
 import java.util.*
 

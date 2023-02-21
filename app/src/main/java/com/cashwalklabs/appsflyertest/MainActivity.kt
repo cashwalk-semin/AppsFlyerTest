@@ -6,11 +6,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.appsflyer.AFInAppEventParameterName
 import com.appsflyer.AFInAppEventType
-import com.appsflyer.adrevenue.adnetworks.AppsFlyerAdNetworkEventType
-import com.appsflyer.adrevenue.adnetworks.generic.MediationNetwork
-import com.appsflyer.adrevenue.adnetworks.generic.Scheme
 import com.cashwalklabs.appsflyertest.databinding.ActivityMainBinding
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
