@@ -16,7 +16,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField('String', 'APPSFLYER_DEV_KEY', '"juZAHZgUkePsLuz4vNgxKP"')
+        buildConfigField('String', 'APPSFLYER_DEV_KEY', '"' + appsflyer_dev_key + '"')
     }
 
     buildTypes {
