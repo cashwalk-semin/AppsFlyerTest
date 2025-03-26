@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.cashwalklabs.appsflyertest'
+    namespace 'com.nudge.appsflyertest'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.cashwalklabs.appsflyertest"
+        applicationId "com.nudge.appsflyertest"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -16,7 +16,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField('String', 'APPSFLYER_DEV_KEY', '"EUzSz4qcTa9KcbMAvcnufJ"')
+        buildConfigField('String', 'APPSFLYER_DEV_KEY', '"juZAHZgUkePsLuz4vNgxKP"')
     }
 
     buildTypes {
@@ -26,11 +26,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
     buildFeatures {
         dataBinding = true

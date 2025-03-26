@@ -1,4 +1,4 @@
-package com.cashwalklabs.appsflyertest
+package com.nudge.appsflyertest
 
 import com.appsflyer.AppsFlyerLib
 import com.appsflyer.attribution.AppsFlyerRequestListener

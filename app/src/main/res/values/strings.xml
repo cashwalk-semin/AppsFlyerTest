@@ -4,4 +4,6 @@
     <string name="purchase_event">Purchase Event</string>
     <string name="lockscreen_event">Lockscreen Event</string>
     <string name="ad_revenue">Ad Revenue</string>
+    <string name="else_function">Else</string>
+    <string name="deep_link">DeepLink</string>
 </resources>

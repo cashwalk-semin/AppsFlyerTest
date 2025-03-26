@@ -1,12 +1,14 @@
-package com.cashwalklabs.appsflyertest
+package com.nudge.appsflyertest
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.appsflyer.AFInAppEventParameterName
 import com.appsflyer.AFInAppEventType
-import com.cashwalklabs.appsflyertest.databinding.ActivityMainBinding
+import com.nudge.appsflyertest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
@@ -36,6 +38,12 @@ class MainActivity : AppCompatActivity() {
             btnElse.setOnClickListener {
                 wishListEvent()
                 showToast("btnInApp")
+            }
+
+            btnDeepLink.setOnClickListener {
+                val uri = "https://minseoksemi.onelink.me/Yhy4/dzow60cw"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+                startActivity(intent)
             }
         }
     }
