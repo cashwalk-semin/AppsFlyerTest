@@ -41,11 +41,19 @@ class MainActivity : AppCompatActivity() {
             }
 
             btnDeepLink.setOnClickListener {
-                val uri = "https://minseoksemi.onelink.me/Yhy4/dzow60cw"
+                val uri = getOneLinkUrl(
+                    oneLinkUrl = "https://minseoksemi.onelink.me/Yhy4/dzow60cw",
+                    referralCode = "seminzzang"
+                )
+                TestLog.messageLog("onClick::${uri}")
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
                 startActivity(intent)
             }
         }
+    }
+
+    private fun getOneLinkUrl(oneLinkUrl: String, referralCode: String): String {
+        return "$oneLinkUrl?af_force_deeplink=true&deep_link_sub2=$referralCode"
     }
 
     private fun showToast(message: String) {

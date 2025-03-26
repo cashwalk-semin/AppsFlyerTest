@@ -32,7 +32,7 @@ class AppsFlyerTestApplication: Application() {
                 val deepLinkObject = deepLinkResult.deepLink
                 val deepLinkIsDeferred = deepLinkObject.isDeferred ?: false
                 val deepLinkValue = deepLinkObject.deepLinkValue
-                val deepLinkSemin = deepLinkObject.getStringValue("semin")
+                val deepLinkSub2 = deepLinkObject.getStringValue("deep_link_sub2")
 
                 when (status) {
                     DeepLinkResult.Status.FOUND -> {
@@ -66,7 +66,7 @@ class AppsFlyerTestApplication: Application() {
 
                 try {
                     TestLog.messageLog("The DeepLink will route to: $deepLinkValue")
-                    TestLog.messageLog("The DeepLink will semin to: $deepLinkSemin")
+                    TestLog.messageLog("The DeepLink will sub2 to: $deepLinkSub2")
                 } catch (e: Exception) {
                     TestLog.messageLog("Custom param not found in DeepLink data")
                     return@subscribeForDeepLink
