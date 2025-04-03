@@ -2,12 +2,14 @@ package com.nudge.appsflyertest
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.appsflyer.AFInAppEventParameterName
 import com.appsflyer.AFInAppEventType
+import com.appsflyer.CreateOneLinkHttpTask
+import com.appsflyer.share.ShareInviteHelper
 import com.nudge.appsflyertest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initView()
+//        generateInviteUrl()
     }
 
     private fun initView() {
@@ -49,7 +52,43 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
                 startActivity(intent)
             }
+
+            btnOneLinkTest.setOnClickListener {
+//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(inviteUrl))
+//                startActivity(intent)
+                generateInviteUrl()
+            }
         }
+    }
+
+    private fun generateInviteUrl() {
+        val linkGenerator = ShareInviteHelper.generateInviteUrl(applicationContext).apply {
+            addParameter("af_custom_shortlink", "seminzzang")
+            addParameter("deep_link_value" , "target_view")
+            addParameter("deep_link_sub1", "promo_code")
+            addParameter("deep_link_sub2", "referrer_id")
+            campaign = "test_invite"
+            channel = "mobile_share"
+            brandDomain = "minseoksemi.onelink.me"
+            addParameter("af_custom_shortlink", "afshortlink")
+        }
+
+        val listener = object: CreateOneLinkHttpTask.ResponseListener {
+            override fun onResponse(p0: String?) {
+                p0?.let {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+                    startActivity(intent)
+                }
+                TestLog.messageLog("onResponse::$p0")
+            }
+
+            override fun onResponseError(p0: String?) {
+                TestLog.messageLog("onResponseError::$p0")
+            }
+
+        }
+
+        linkGenerator.generateLink(applicationContext, listener)
     }
 
     private fun getOneLinkUrl(oneLinkUrl: String, referralCode: String): String {

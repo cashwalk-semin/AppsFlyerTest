@@ -5,6 +5,7 @@ import android.content.Context
 import android.provider.Settings
 import android.telephony.TelephonyManager
 import com.appsflyer.AppsFlyerLib
+import com.appsflyer.attribution.AppsFlyerRequestListener
 import com.appsflyer.deeplink.DeepLinkResult
 import java.io.UnsupportedEncodingException
 import java.util.UUID
@@ -23,10 +24,9 @@ class AppsFlyerTestApplication: Application() {
 
     private fun initAppsFlyer() {
         val appsFlyerLib = AppsFlyerLib.getInstance().apply {
-            init(BuildConfig.APPSFLYER_DEV_KEY, null, this@AppsFlyerTestApplication)
-            waitForCustomerUserId(true)
-            start(this@AppsFlyerTestApplication, BuildConfig.APPSFLYER_DEV_KEY, null)
-            setCustomerIdAndLogSession(deviceUniqueId(), this@AppsFlyerTestApplication)
+            setDebugLog(true)
+            setMinTimeBetweenSessions(0)
+            setAppInviteOneLink("Yhy4")
             subscribeForDeepLink { deepLinkResult ->
                 val status = deepLinkResult.status
                 val deepLinkObject = deepLinkResult.deepLink
@@ -74,6 +74,19 @@ class AppsFlyerTestApplication: Application() {
 
                 TestLog.messageLog("Get DeepLink finish")
             }
+            init(BuildConfig.APPSFLYER_DEV_KEY, null, this@AppsFlyerTestApplication)
+            start(this@AppsFlyerTestApplication, BuildConfig.APPSFLYER_DEV_KEY, object : AppsFlyerRequestListener {
+                override fun onSuccess() {
+                    TestLog.messageLog("start::onSuccess")
+                }
+
+                override fun onError(errorCode: Int, errorDesc: String) {
+                    TestLog.messageLog("start::onError")
+                }
+            })
+
+//            waitForCustomerUserId(true)
+//            setCustomerIdAndLogSession(deviceUniqueId(), this@AppsFlyerTestApplication)
         }
     }
 
